@@ -1,3 +1,5 @@
+# Card class
+# author @jamesnguyenvnn
 class Card
   attr_reader :face, :suit
   HIGH_ACE = 14
@@ -8,9 +10,9 @@ class Card
     '4' =>  4,
     '5' =>  5,
     '6' =>  6,
-    '7' =>  6,
-    '8' =>  7,
-    '9' =>  8,
+    '7' =>  7,
+    '8' =>  8,
+    '9' =>  9,
     '10' => 10,
     'J' => 11,
     'Q' => 12,
@@ -25,8 +27,8 @@ class Card
     'S' => 0
   }
   def initialize(str)
-    raise ArgumentError, "Invalid card" if str.nil? || str.empty? || str.length == 0 || str.length > 3
-    build_card(str[0...-1], str[-1,1])
+    fail ArgumentError, 'Invalid card' if str.nil? || str.empty? || str.length == 0 || str.length > 3
+    build_card(str[0...-1], str[-1, 1])
   end
 
   def ace?
@@ -42,10 +44,10 @@ class Card
   end
 
   private
+
   def build_card(face, suit)
     @face  = FACE_VALUES[face.upcase]
     @suit  = SUIT_VALUES[suit.upcase]
-    raise ArgumentError, "Invalid card" unless @face and @suit
+    fail ArgumentError, 'Invalid card' unless @face && @suit
   end
-
 end
