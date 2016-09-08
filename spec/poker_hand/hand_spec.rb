@@ -3,24 +3,24 @@ require 'poker_hand/hand'
 require 'poker_hand/card'
 
 describe 'Hand' do
-  let(:hand1) { Hand.new cards("2h 3h 4h 5h 6h") }
-  let(:hand2) { Hand.new cards("2h 2s 2d 2c 6h") }
-  let(:hand3) { Hand.new cards("2h 2s 2d 3c 6h") }
-  let(:hand4) { Hand.new cards("2h 2s 5d 5c 6h") }
-  let(:hand5) { Hand.new cards("2h 2s 4d 5c 6h") }
-  let(:hand6) { Hand.new cards("AC 4D 7H 5D 6C") }
+  let(:hand1) { Hand.new("2h 3h 4h 5h 6h") }
+  let(:hand2) { Hand.new("2h 2s 2d 2c 6h") }
+  let(:hand3) { Hand.new("2h 2s 2d 3c 6h") }
+  let(:hand4) { Hand.new("2h 2s 5d 5c 6h") }
+  let(:hand5) { Hand.new("2h 2s 4d 5c 6h") }
+  let(:hand6) { Hand.new("AC 4D 7H 5D 6C") }
 
-  let(:hand7) { Hand.new cards("AC AD 7H 5D 5H") }
-  let(:hand8) { Hand.new cards("AC 2D 4D 5H 3H") }
-  let(:hand9) { Hand.new cards("AC KD QD 10H JH ") }
-  let(:hand10) { Hand.new cards("AC KD JH QD 9H") }
+  let(:hand7) { Hand.new("AC AD 7H 5D 5H") }
+  let(:hand8) { Hand.new("AC 2D 4D 5H 3H") }
+  let(:hand9) { Hand.new("AC KD QD 10H JH ") }
+  let(:hand10) { Hand.new("AC KD JH QD 9H") }
 
-  let(:duplicate_cards) { Hand.new cards("AC AC 7H 5D 5H") }
+  let(:err_cards) { Hand.new("AF KD JH QD 9H") }
+  let(:one_pair) { Hand.new("Ah aD ks qc 2s")}
+  let(:duplicate_cards) { Hand.new("AC AC 7H 5D 5H") }
 
-  def cards(string)
-    string.split(" ").map { |str| Card.new(str) }
-  end
-
+  it { expect {err_cards}.to raise_error(/Invalid card/) }
+  it { expect(one_pair.rankings).to eq(["One pair", "high card: AH"])}
   it 'Hand#straight()' do
     test = hand8.straight?
     expect(test).to eq(true)

@@ -34,5 +34,6 @@ describe 'Card' do
       it { expect { Card.new('') }.to raise_error(ArgumentError) }
       it { expect { card5 }.to raise_error(ArgumentError) }
       it { expect { card6 }.to raise_error(ArgumentError) }
+      it { expect { card6 }.to raise_error(/Invalid card/) }
     end
 end

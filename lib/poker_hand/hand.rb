@@ -11,12 +11,11 @@ class Hand
     one_pair:        "One pair"
   }.freeze
 
-  def initialize(cards)
-
-    raise ArgumentError unless cards.count == 5
-    @cards = cards.freeze
+  def initialize(str_cards)
+    @cards = build_cards_from(str_cards)
+    raise ArgumentError unless @cards.count == 5
+    @cards = @cards.freeze
     check_duplicates
-
   end
 
   def check_duplicates
@@ -99,4 +98,11 @@ class Hand
   def suits
     cards.map(&:suit)
   end
+
+  private
+
+  def build_cards_from(string)
+    string.split(" ").map { |str| Card.new(str) }
+  end
+
 end
