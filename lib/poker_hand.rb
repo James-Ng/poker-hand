@@ -1,5 +1,2 @@
-require "poker_hand/version"
-
-module PokerHand
-  # Your code goes here...
-end
+require 'poker_hand/card'
+require 'poker_hand/hand'
