@@ -25,7 +25,7 @@ class Card
     'S' => 0
   }
   def initialize(str)
-    raise ArgumentError, "Empty card" if str.nil? || str.empty? || str.length == 0 || str.length > 3
+    raise ArgumentError, "Invalid card" if str.nil? || str.empty? || str.length == 0 || str.length > 3
     build_card(str[0...-1], str[-1,1])
   end
 
