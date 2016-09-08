@@ -31,20 +31,24 @@ class Card
     build_card(str[0...-1], str[-1, 1])
   end
 
+  # if card is an ace
   def ace?
     face == HIGH_ACE
   end
 
+  # change ace to low in low straight aces
   def low_ace
     ace? ? LOW_ACE : face
   end
 
+  # get string value of card
   def to_s
     FACE_VALUES.key(face) + SUIT_VALUES.key(suit)
   end
 
   private
 
+  # build card from face and suit. Upcase to make sure it can map with FACE_VALUES and SUIT_VALUES
   def build_card(face, suit)
     @face  = FACE_VALUES[face.upcase]
     @suit  = SUIT_VALUES[suit.upcase]
