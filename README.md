@@ -1,8 +1,43 @@
 # PokerHand
 
-## Installation
+This is a simple gem that I make for trying to apply TDD and best practices. 
+The suit order is : 
 
-    $ bundle install
+    SUIT_VALUES = {
+        'H' => 3,
+        'D' => 2,
+        'C' => 1,
+        'S' => 0
+    }
+
+The face values are : 
+
+    FACE_VALUES = {
+        '2' =>  2,
+        '3' =>  3,
+        '4' =>  4,
+        '5' =>  5,
+        '6' =>  6,
+        '7' =>  7,
+        '8' =>  8,
+        '9' =>  9,
+        '10' => 10,
+        'J' => 11,
+        'Q' => 12,
+        'K' => 13,
+        'A' => 14
+     }
+  
+ The gem provides some methods that help to check the hand of cards or show all hand categories of the cards.
+   
+    $ irb
+    > require 'poker_hand'
+    > hand = Hand.new("as ad ah ac 7s")
+    > hand.rankings        # show all hand categories
+    => ["Four of a kind", "high card: AH"]
+    > hand.two_pair?       # check two_pair? hand
+    => false  
+    
 
 ## Rspec
 
@@ -16,7 +51,7 @@ Or use guard when development (auto run rspec if change code or rspec file)
 
 To analyze the code base.
 
-## Build and use
+## Build and install
 
     $ gem build poker_hand.gemspec
     
